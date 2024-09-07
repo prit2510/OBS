@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::Layout(~{::#section},~{::title},~{::script})">
+<head>
+    <meta charset="UTF-8" />
+    <title>Account creation page</title>
+</head>
+<body>
+<div id="section">
+  <div class="grid grid-cols-12 mt-4">
+    <div class="col-span-4
+    
+    
+    
+    md:col-span-2 lg:col-span-3 xl:col-span-4"></div>
+    <div class="col-span-12 md:col-span-8 lg:col-span-6 xl:col-span-4">
+        <!-- 6 ki spance le rhi hai -->
+        <!-- card -->
+        <div
+          class="
+          block p-6 border-t-[10px] 
+          border-blue-700 bg-white 
+          rounded-xl shadow 
+          hover:bg-gray-100 
+          dark:bg-gray-800 
+          dark:border-blue-700 dark:hover:bg-gray-700"
+        >
+        
+          <h5
+            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
+            Create Account
+          </h5>
+          
+
+          <!-- this is  form -->
+           
+          <form
+            data-th-action="@{'/do-create'}"
+            method="post"
+            data-th-object="${accountform}"
+            class="mt-5"
+            novalidate
+          >
+          <!-- account number  -->
+
+          <div class="mb-3">
+            <label
+              for="acnumber"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >AC no.</label
+            >
+            <input
+              type="text"
+              id="acnumber"
+              data-th-field="*{accountNumber}"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="enter like 'ACmobilenumber' Ex:'AC1234567890'"
+              required
+            />
+             
+            
+          </div>
+            <!-- account holder name  -->
+
+            <div class="mb-3">
+              <label
+                for="name"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Holder Name</label
+              >
+              <input
+                type="text"
+                id="name"
+                data-th-field="*{accountHolderName}"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Enter here first name and last name"
+                required
+              />
+               
+              
+            </div>
+            
+            <!-- pin field -->
+            <div class="mb-3">
+              <label
+                for="password"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >PIN</label
+              >
+              <input
+                data-th-field="*{accountPin}"
+                type="password"
+                id="password"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Enter 4 digit pin"
+                required
+              /> 
+            </div>
+            <!-- balance -->
+            <div class="mb-3">
+              <label
+                for="balance"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >balance</label
+              >
+              <input
+                data-th-field="*{accountBalance}"
+                type="text"
+                id="balance"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                 placeholder="Enter balance"
+                required
+              />
+            </div>
+
+            
+            <!-- button -->
+
+            <div class="mb-3 flex justify-center space-x-3">
+              <button
+                type="submit"
+                class="px-3 py-2 rounded bg-gray-800 hover:bg-gray text-white dark:bg-blue-800 dark:hover:bg-blue-800"
+              >
+                Create
+              </button>
+              <button
+                type="reset"
+                class="px-3 py-2 rounded bg-orange-800 hover:bg-orange text-white dark:bg-orange-800 dark:hover:bg-orange-800"
+              >
+                Reset
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    console.log("Signup page");
+  </script>
+</body>
+</html>
