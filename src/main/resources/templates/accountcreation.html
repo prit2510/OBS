@@ -24,7 +24,9 @@
           dark:bg-gray-800 
           dark:border-blue-700 dark:hover:bg-gray-700"
         >
-        
+        <!-- message here--> 
+
+        <div data-th-replace="message::messagebox"></div>
           <h5
             class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
           >
@@ -57,7 +59,13 @@
               placeholder="enter like 'ACmobilenumber' Ex:'AC1234567890'"
               required
             />
-             
+            <p
+            data-th-if="${#fields.hasErrors('accountNumber')}"
+            data-th-errors="*{accountNumber}"
+            class="text-red-600 px-1 py-2"
+          >
+            accountNumber is required
+          </p>
             
           </div>
             <!-- account holder name  -->
@@ -76,7 +84,13 @@
                 placeholder="Enter here first name and last name"
                 required
               />
-               
+              <p
+            data-th-if="${#fields.hasErrors('accountHolderName')}"
+            data-th-errors="*{accountHolderName}"
+            class="text-red-600 px-1 py-2"
+          >
+            accountHolderName is required
+          </p> 
               
             </div>
             
@@ -93,8 +107,16 @@
                 id="password"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Enter 4 digit pin"
+                pattern="\d{4}"
                 required
               /> 
+              <p
+            data-th-if="${#fields.hasErrors('accountPin')}"
+            data-th-errors="*{accountPin}"
+            class="text-red-600 px-1 py-2"
+          >
+            accountPin is required
+          </p>
             </div>
             <!-- balance -->
             <div class="mb-3">
@@ -111,6 +133,13 @@
                  placeholder="Enter balance"
                 required
               />
+              <p
+            data-th-if="${#fields.hasErrors('accountBalance')}"
+            data-th-errors="*{accountBalance}"
+            class="text-red-600 px-1 py-2"
+          >
+            accountBalance is required
+          </p>
             </div>
 
             

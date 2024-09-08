@@ -30,7 +30,7 @@ public class Account {
     private Long id;
     private String accountNumber;
     private String accountHolderName;
-    private int accountPin;
+    private Integer accountPin;
     private String accountBalance;
 
      // add more fields if needed
