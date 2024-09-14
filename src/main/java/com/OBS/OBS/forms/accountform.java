@@ -25,9 +25,8 @@ public class accountform {
     @NotBlank(message = "account holder's name is required")
     private String accountHolderName;
     @NotNull(message = "Account PIN is required")
-    @Min(value = 4, message = "PIN must be a 4-digit number")
-    @Max(value=4, message = "PIN must be a 4-digit number")
-    private Integer accountPin;
+    @Min(value=4)
+    private String accountPin;
     @NotBlank(message = "Account Balance is required")
     private String accountBalance;
 

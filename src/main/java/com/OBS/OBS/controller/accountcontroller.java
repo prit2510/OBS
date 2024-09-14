@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,9 +25,19 @@ public class accountcontroller {
     @Autowired
     private AccountServices accountservice;
 
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/account";
+    }
+
     @RequestMapping("/account")
     public String account() {
         return "home";
+    }
+   
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
     }
 
     @RequestMapping("/createaccount")
@@ -34,6 +45,7 @@ public class accountcontroller {
         model.addAttribute("accountform", new accountform());
         return "accountcreation";
     }
+    
 
     @RequestMapping("/do-create")
     public String doCreate(@Valid @ModelAttribute accountform accountform,BindingResult bindingResult,HttpSession session) {
