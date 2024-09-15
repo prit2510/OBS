@@ -11,6 +11,6 @@ import com.OBS.OBS.entites.Account;
 @Repository
 public interface AccountRepo extends JpaRepository<Account, Long> {
 
-     Optional<UserDetails> findByaccountNumber(String accountNumber);
+     Optional<Account> findByaccountNumber(String accountNumber);
 
 }

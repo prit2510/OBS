@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::Layout(~{::section},~{::title},~{::script})">
+<head>
+	<meta charset="UTF-8" />
+	<title>transection page</title>
+</head>
+<body>
+<section>
+	
+	<div class="mb-3 flex justify-center flex-col space-x-3">
+		
+		<a
+        data-th-href="@{'/accountnumber/transfer'}"
+        type="button"
+        class="px-3 py-2 mb-4 text-center rounded bg-gray-800 hover:bg-gray text-white dark:bg-blue-800 dark:hover:bg-blue-800"
+      >
+	  transfer
+      </a>
+	  <a
+	  data-th-href="@{'/login'}"
+	  type="button"
+		  class="px-3 py-2 mb-4 text-center rounded bg-gray-800 hover:bg-gray text-white dark:bg-blue-800 dark:hover:bg-blue-800"
+		>
+		  widrow
+	</a>
+    <a
+	  data-th-href="@{'/login'}"
+	  type="button"
+		  class="px-3 py-2 mb-4 text-center rounded bg-gray-800 hover:bg-gray text-white dark:bg-blue-800 dark:hover:bg-blue-800"
+		>
+		  creadit
+	</a>
+	  </div>
+</section>
+	
+<script>
+		console.log('this is home page');
+</script>
+	</body>
+</html>
+	

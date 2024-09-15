@@ -1,5 +1,7 @@
 package com.OBS.OBS.entites;
 
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -23,14 +25,16 @@ import lombok.Setter;
 @Builder
 public class Transaction {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String transactionId;
     private String transactionType;
-    private String transactionAmount;
+    private Double transactionAmount;
     private String transactionDate;
     private String transactionAccountNumber;
 
     @ManyToOne
     @JsonIgnore
     private Account account;
+
+
+   
    }

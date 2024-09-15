@@ -39,7 +39,7 @@ public class Account implements UserDetails {
     private String accountNumber;
     private String accountHolderName;
     private String accountPin;
-    private String accountBalance;
+    private Double accountBalance;
 
      // add more fields if needed
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
