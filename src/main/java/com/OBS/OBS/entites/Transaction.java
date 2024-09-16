@@ -25,7 +25,8 @@ import lombok.Setter;
 @Builder
 public class Transaction {
     @Id
-    private String transactionId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-incremented ID for sequential order
+    private Long transactionId;
     private String transactionType;
     private Double transactionAmount;
     private String transactionDate;
@@ -34,6 +35,14 @@ public class Transaction {
     @ManyToOne
     @JsonIgnore
     private Account account;
+
+    public Transaction( String transactionType, Double transactionAmount, String transactionDate, String transactionAccountNumber, Account account) {
+        this.transactionType = transactionType;
+        this.transactionAmount=transactionAmount;
+        this.transactionDate = transactionDate;
+        this.transactionAccountNumber = transactionAccountNumber;
+        this.account = account;
+    }
 
 
    

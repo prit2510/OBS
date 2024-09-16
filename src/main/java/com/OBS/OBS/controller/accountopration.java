@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import com.OBS.OBS.forms.TransferForm;
+import com.OBS.OBS.forms.withdrowForm;
 import com.OBS.OBS.helper.message;
 import com.OBS.OBS.helper.messageType;
 import com.OBS.OBS.services.TransactionServices;
@@ -36,14 +37,14 @@ public class accountopration {
 
 
     @RequestMapping("/transfer")
-    public String accountcreation(Model model) {
+    public String transfer(Model model) {
         model.addAttribute("transferForm", new TransferForm());
         return "accountoprations/transfer";
     }
     
 
     @RequestMapping("/do-transfer")
-    public String doCreate(@Valid @ModelAttribute TransferForm transferForm,BindingResult bindingResult,HttpSession session) {
+    public String dotransfer(@Valid @ModelAttribute TransferForm transferForm,BindingResult bindingResult,HttpSession session) {
         System.out.println(transferForm);
         if (bindingResult.hasErrors()) {
             return "accountcreation";  // return back to form if validation fails
@@ -58,6 +59,29 @@ public class accountopration {
         session.setAttribute("message", msg);
         return "accountoprations/transfer";
     }
+
+    @RequestMapping("/withdrow")
+    public String withdrow(Model model) {
+        model.addAttribute("withdrowForm", new withdrowForm());
+        return "accountoprations/withdrow";
+    }
+    
+
+    @RequestMapping("/do-withdrow")
+    public String dowithdrow(@Valid @ModelAttribute withdrowForm withdrowForm,BindingResult bindingResult,HttpSession session) {
+        System.out.println(withdrowForm);
+        if (bindingResult.hasErrors()) {
+            return "accountcreation";  // return back to form if validation fails
+        }
+        transactionServices.withdrawFunds(withdrowForm.getAccountNumber(), withdrowForm.getTransactionAmount());
+        // message = "Transection Successful"
+        // add the message:
+        message msg = message.builder().content("withdrow Successful").type(messageType.green).build();
+
+        session.setAttribute("message", msg);
+        return "accountoprations/withdrow";
+    }
+
 }
 
         

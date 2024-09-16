@@ -5,7 +5,7 @@ import com.OBS.OBS.entites.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
-public interface TransactionRepo extends JpaRepository<Transaction, String> {
+public interface TransactionRepo extends JpaRepository<Transaction,Long> {
 
    
 }
