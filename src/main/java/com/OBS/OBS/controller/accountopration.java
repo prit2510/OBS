@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+import com.OBS.OBS.forms.CreditForm;
 import com.OBS.OBS.forms.TransferForm;
 import com.OBS.OBS.forms.withdrowForm;
 import com.OBS.OBS.helper.message;
@@ -65,8 +65,6 @@ public class accountopration {
         model.addAttribute("withdrowForm", new withdrowForm());
         return "accountoprations/withdrow";
     }
-    
-
     @RequestMapping("/do-withdrow")
     public String dowithdrow(@Valid @ModelAttribute withdrowForm withdrowForm,BindingResult bindingResult,HttpSession session) {
         System.out.println(withdrowForm);
@@ -80,6 +78,27 @@ public class accountopration {
 
         session.setAttribute("message", msg);
         return "accountoprations/withdrow";
+    }
+
+    @RequestMapping("/credit")
+    public String credit(Model model) {
+        model.addAttribute("creditForm", new CreditForm());
+        return "accountoprations/credit";
+    }
+    @RequestMapping("/do-credit")
+    public String doCredit(@Valid @ModelAttribute CreditForm creditForm,BindingResult bindingResult,HttpSession session) {
+        
+        System.out.println(creditForm);
+        if (bindingResult.hasErrors()) {
+            return "accountcreation";  // return back to form if validation fails
+        }
+        transactionServices.creditFunds(creditForm.getAccountNumber(), creditForm.getTransactionAmount());
+        // message = "Transection Successful"
+        // add the message:
+        message msg = message.builder().content("Amount Credited Successful").type(messageType.green).build();
+
+        session.setAttribute("message", msg);
+        return "accountoprations/credit";
     }
 
 }

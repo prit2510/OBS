@@ -65,4 +65,19 @@ public class TransactionServicesimpl implements TransactionServices {
         }
 
     }
+
+
+
+    @Override
+    public void creditFunds(String accountNumber, Double amount) {
+        Account account = accountRepo.findByaccountNumber(accountNumber)
+            .orElseThrow(() -> new UsernameNotFoundException("User not found with AC number : " + accountNumber));
+        
+        LocalDate currentDate = LocalDate.now();
+        if(account != null){
+            account.setAccountBalance(account.getAccountBalance() + amount);
+            accountRepo.save(account);
+            transactionRepo.save(new Transaction("Withdraw", amount,currentDate.toString(),accountNumber,account));
+        }    
+    }
 }
