@@ -1,6 +1,7 @@
 package com.OBS.OBS.forms;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.annotation.Nonnull;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class withdrowForm {
      
-    @NotBlank(message = "Account Number is required")
     private String AccountNumber;
+    @NotNull(message="Transaction Amount is required")
     private Double transactionAmount;
 }

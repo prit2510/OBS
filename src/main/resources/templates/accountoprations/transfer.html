@@ -49,21 +49,15 @@
               >Sender's AC no.</label
             >
             <input
-              type="text"
-              id="acnumber"
-              data-th-field="*{FromAccountNumber}"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="enter Sender's AC no"
-              required
-            />
-            <p
-            data-th-if="${#fields.hasErrors('FromAccountNumber')}"
-            data-th-errors="*{FromAccountNumber}"
-            class="text-red-600 px-1 py-2"
-          >
-            Sender's AC no. is required
-          </p>
-           
+            type="text"
+            id="acnumber"
+            data-th-value="${currentAccount}" 
+            placeholder="enter Sender's AC no" 
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            readonly  
+            required
+        />
+        </div> 
           <!--To account number  -->
 
           <div class="mb-3">

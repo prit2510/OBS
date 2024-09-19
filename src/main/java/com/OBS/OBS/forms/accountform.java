@@ -26,6 +26,7 @@ public class accountform {
     @NotNull(message = "Account PIN is required")
     @Min(value=4)
     private String accountPin;
+    @NotNull(message="Balance is required")
     private Double accountBalance;
 
 }
