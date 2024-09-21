@@ -1,6 +1,8 @@
 package com.OBS.OBS.services.Impl;
 
 import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +41,13 @@ public class TransactionServicesimpl implements TransactionServices {
                 accountRepo.save(fromAccount);
                 accountRepo.save(toAccount);
             
-                
+                String remainingFromAmount = fromAccount.getAccountBalance().toString();
+                String remainingToAmount = toAccount.getAccountBalance().toString();
                 // Record the transactions
-                transactionRepo.save(new Transaction("Transfer", amount,currentDate.toString(),fromAccountNumber,fromAccount));
+                transactionRepo.save(new Transaction("Transfer", amount,currentDate.toString(),toAccountNumber,remainingToAmount,toAccount));
                 Double newAmount = amount * 2;
                 amount -= newAmount;
-                transactionRepo.save(new Transaction("Transfer", amount,currentDate.toString(),toAccountNumber,toAccount));
+                transactionRepo.save(new Transaction("Transfer", amount,currentDate.toString(),fromAccountNumber,remainingFromAmount,fromAccount));
             } else {
                 throw new RuntimeException("Insufficient funds or account not found");
             }
@@ -61,7 +64,8 @@ public class TransactionServicesimpl implements TransactionServices {
         if(account != null && account.getAccountBalance() >= amount){
             account.setAccountBalance(account.getAccountBalance() - amount);
             accountRepo.save(account);
-            transactionRepo.save(new Transaction("Withdraw", amount,currentDate.toString(),accountNumber,account));
+            String remainingAmount = account.getAccountBalance().toString();
+            transactionRepo.save(new Transaction("Withdraw", amount,currentDate.toString(),accountNumber,remainingAmount,account));
         }
 
     }
@@ -77,7 +81,15 @@ public class TransactionServicesimpl implements TransactionServices {
         if(account != null){
             account.setAccountBalance(account.getAccountBalance() + amount);
             accountRepo.save(account);
-            transactionRepo.save(new Transaction("Withdraw", amount,currentDate.toString(),accountNumber,account));
+            String remainingAmount = account.getAccountBalance().toString();
+            transactionRepo.save(new Transaction("Credit", amount,currentDate.toString(),accountNumber,remainingAmount,account));
         }    
+    }
+
+
+
+    @Override
+    public List<Transaction> getTransactions(String accountNumber) {
+        return transactionRepo.findBytransactionAccountNumber(accountNumber);
     }
 }

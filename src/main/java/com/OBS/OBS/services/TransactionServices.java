@@ -1,12 +1,15 @@
 package com.OBS.OBS.services;
 
+import java.util.List;
+
 import com.OBS.OBS.entites.Transaction;
 
 public interface TransactionServices {
-    public void transferFunds(String fromAccountNumber, String toAccountNumber, Double amount);
+     void transferFunds(String fromAccountNumber, String toAccountNumber, Double amount);
 
-    public void withdrawFunds(String accountNumber, Double amount);
+     void withdrawFunds(String accountNumber, Double amount);
 
-	public void creditFunds(String accountNumber, Double amount);
+	 void creditFunds(String accountNumber, Double amount);
     
+    List<Transaction> getTransactions(String accountNumber);
 }

@@ -31,16 +31,18 @@ public class Transaction {
     private Double transactionAmount;
     private String transactionDate;
     private String transactionAccountNumber;
+    private String remainingAmount;
 
     @ManyToOne
     @JsonIgnore
     private Account account;
 
-    public Transaction( String transactionType, Double transactionAmount, String transactionDate, String transactionAccountNumber, Account account) {
+    public Transaction( String transactionType, Double transactionAmount, String transactionDate, String transactionAccountNumber,String remainingAmount,Account account) {
         this.transactionType = transactionType;
         this.transactionAmount=transactionAmount;
         this.transactionDate = transactionDate;
         this.transactionAccountNumber = transactionAccountNumber;
+        this.remainingAmount = remainingAmount;
         this.account = account;
     }
 

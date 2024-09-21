@@ -1,5 +1,6 @@
 package com.OBS.OBS.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -7,7 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import java.util.List;
+import com.OBS.OBS.entites.Transaction;
 import com.OBS.OBS.forms.CreditForm;
 import com.OBS.OBS.forms.TransferForm;
 import com.OBS.OBS.forms.withdrowForm;
@@ -121,6 +123,22 @@ public class accountopration {
 
         session.setAttribute("message", msg);
         return "accountoprations/credit";
+    }
+    
+    // @RequestMapping("/balance")
+    // public String balance(Model model,Authentication authentication) {
+    //     String currentaccount=Helper.getaccountNumberOfLoggedInUser(authentication);
+    //     model.addAttribute("currentAccount", currentaccount);
+    //     model.addAttribute("balance", transactionServices.getBalance(currentaccount));
+    //     return "accountoprations/balance";
+    // }
+
+    @RequestMapping("/transection-history")
+    public String transectionHistory(Model model,Authentication authentication) {
+        String currentaccount=Helper.getaccountNumberOfLoggedInUser(authentication);
+        List<Transaction> transections = transactionServices.getTransactions(currentaccount);
+        model.addAttribute("transections", transections);
+        return "accountoprations/transectionHistory";
     }
 
 }

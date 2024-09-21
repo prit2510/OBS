@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::Layout(~{::section},~{::title},~{::script})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Dashbord page</title>
+</head>
+<body>
+<section>
+	
+	<h1 class="text-center mb-2 mt-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Transection History</h1>
+    <div class="container">
+        
+
+<div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-900 uppercase dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Date of Transection
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Wedraw 
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Credit
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Balance
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr 
+                data-th-each="transection : ${transections}"
+                data-th-object="${transection}"
+                class="bg-white dark:bg-gray-800">
+                <th data-th-text="*{transactionDate}" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    01/01/2000
+                </th>
+                <td class="withdrow px-6 py-4" 
+                th:if="${transection.transactionType == 'Withdraw' || transection.transactionType == 'Transfer'}">
+                <span th:text="${transection.transactionAmount}">500</span>
+            </td>
+            <td class="withdrow px-6 py-4" 
+                th:unless="${transection.transactionType == 'Withdraw' || transection.transactionType == 'Transfer'}">
+                <span>-</span>
+            </td>
+            <td class="credit px-6 py-4" 
+                th:if="${transection.transactionType == 'Credit' || transection.transactionType == 'Transfer'}">
+                <span th:text="${transection.transactionAmount}">500</span>
+            </td>
+            <td class="credit px-6 py-4" 
+                th:unless="${transection.transactionType == 'Credit' || transection.transactionType == 'Transfer'}">
+                <span>-</span>
+            </td>
+                <td 
+                data-th-text="*{remainingAmount}"
+                class="px-6 py-4">
+                    1000
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+    </div>
+</section>
+	
+<script>
+		console.log('this is home page');
+</script>
+	</body>
+</html>
+	
